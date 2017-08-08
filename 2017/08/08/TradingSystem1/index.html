@@ -102,7 +102,7 @@
 <meta property="og:site_name" content="长毛大好的根据地">
 <meta property="og:description" content="一个股票交易系统是一系列文章，阐述怎样从零开发一个可用的股票交易系统。开发平台使用聚宽。 基本面因子股票与其它投资工具的一个显著的区别是股票投资的企业的股权，而企业是可以产生利润的。所以从长期来看，股票市场总体上不断上升的。但股票也有优劣之分，有的盈利，有的则亏损；有的弹性大，有的弹性小；有的成交量大，方便资金进出，有的成交量小，稍大的资金量就会引起股票价格的波动。本交易系统追求小资金量的收益最大">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-08T22:45:01.371Z">
+<meta property="og:updated_time" content="2017-08-08T22:47:07.151Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="从零构建股票交易系统 - 股票池">
 <meta name="twitter:description" content="一个股票交易系统是一系列文章，阐述怎样从零开发一个可用的股票交易系统。开发平台使用聚宽。 基本面因子股票与其它投资工具的一个显著的区别是股票投资的企业的股权，而企业是可以产生利润的。所以从长期来看，股票市场总体上不断上升的。但股票也有优劣之分，有的盈利，有的则亏损；有的弹性大，有的弹性小；有的成交量大，方便资金进出，有的成交量小，稍大的资金量就会引起股票价格的波动。本交易系统追求小资金量的收益最大">
@@ -384,7 +384,7 @@
 </table>
 <p>如果股票涨幅与某个账务因子是没有关联性的，那么分位数与这个因子排序数值应该相差不会太大。例如0.25分位对应的排序值就应该是25，0.5分位对应的排序值就应该是50，0.75分位对应的排序值就应该是75。以选取出的几个因子为例，market_cap（流通股本）对与股票涨幅没有影响，PE（市盈率）和PB（市净率）越小股票涨幅越大，inventories（存货）和fixed_assets（固定资产）越大股票涨幅越大。PE和PB越小越好容易理解，但为什么存货越大越好？似乎不符合逻辑。我想可能的原因是过去一年小市值股票遭到市场抛弃，市值越大，存货绝对值越大。但我们的策略中应该不能使用存货作为一个因子，因为不符合逻辑。我们开发出一个新的因子：存货/固定资产，如果检测这个因子与股票涨幅相关，可以将它做为交易系统的一个选股因子。</p>
 <p>我们只检测了一年的数据。市场在一段时间内可能会有不同的偏好，比如过去一年小市值股票表现不好，但过去三年小市值因子是有明显的作用的。可以修改以下两行代码，修改统计的日期，统计不同时间段的数据进行分析。</p>
-<p>··· python<br>last_two_year_dt = u.shift_trading_day(u.today_dt, -480)    # -480可以修改为-1000<br>last_year_dt = u.shift_trading_day(u.today_dt, -240)        # -240可以修改为-720<br>```</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">last_two_year_dt = u.shift_trading_day(u.today_dt, <span class="number">-480</span>)    <span class="comment"># -480可以修改为-1000</span></div><div class="line">last_year_dt = u.shift_trading_day(u.today_dt, <span class="number">-240</span>)        <span class="comment"># -240可以修改为-720</span></div></pre></td></tr></table></figure>
 <p>根据<a href="https://item.jd.com/11397927.html" target="_blank" rel="external">投资策略实战分析</a>，以下因子可能是显著效应的，可以重点关注。</p>
 <ul>
 <li>市值</li>
