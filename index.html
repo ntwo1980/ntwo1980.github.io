@@ -346,7 +346,7 @@
 <p>我们再加入一个因子，同比营业利润增长率。把选股的代码修改为：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">fundamentals = get_fundamentals(query(valuation.code, valuation.pb_ratio</div><div class="line">                ).filter(</div><div class="line">                    valuation.pb_ratio &gt; <span class="number">0</span>,</div><div class="line">                    valuation.pb_ratio &lt; <span class="number">3</span>,</div><div class="line">                    indicator.inc_operation_profit_year_on_year &gt; <span class="number">15</span></div><div class="line">                ), context.previous_date)</div><div class="line">    fundamentals = fundamentals.set_index([<span class="string">'code'</span>])</div></pre></td></tr></table></figure>
 <p>我们加入一个条件：同比营业利润增长率大于15%。这样策略就会将便宜（低PB）并且绩优（同比营业利润增长）的股票加入股票池，而不是仅仅选取便宜的股票。回测的结果如下：<br><img src="/uploads/2017081002.png" alt=""></p>
-<p>仅仅加入一个因子就将收益提高了3倍，总收益从74.11%提高到216.91%，年化收益从7.7%提高到16.90%。</p>
+<p>仅仅加入一个因子就将收益提高了3倍，总收益从74.11%提高到216.91%，年化收益从7.7%提高到16.90%。并且几乎所有时间都是跑盈基准的。</p>
 
           
         
