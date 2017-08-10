@@ -103,7 +103,7 @@
 <meta property="og:description" content="在上一篇中我们创建了一个PB轮动的策略，但是策略收益差强人意。这一篇我们对这个策略进行优化，以提高收益。 优化股票池查看回测结果，可以发现单一的低PB因子选择的大部分是钢铁股。而钢铁股这种强周期股几年才有一次行情。所以策略大部分时间跑输基准也不奇怪了。 我们再加入一个因子，同比营业利润增长率。把选股的代码修改为： 1234567fundamentals = get_fundamentals(que">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/uploads/2017081002.png">
-<meta property="og:updated_time" content="2017-08-10T08:30:33.751Z">
+<meta property="og:updated_time" content="2017-08-10T08:33:03.334Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="从零构建股票交易系统 - 优化">
 <meta name="twitter:description" content="在上一篇中我们创建了一个PB轮动的策略，但是策略收益差强人意。这一篇我们对这个策略进行优化，以提高收益。 优化股票池查看回测结果，可以发现单一的低PB因子选择的大部分是钢铁股。而钢铁股这种强周期股几年才有一次行情。所以策略大部分时间跑输基准也不奇怪了。 我们再加入一个因子，同比营业利润增长率。把选股的代码修改为： 1234567fundamentals = get_fundamentals(que">
@@ -346,7 +346,7 @@
 <h2 id="优化股票池"><a href="#优化股票池" class="headerlink" title="优化股票池"></a>优化股票池</h2><p>查看回测结果，可以发现单一的低PB因子选择的大部分是钢铁股。而钢铁股这种强周期股几年才有一次行情。所以策略大部分时间跑输基准也不奇怪了。</p>
 <p>我们再加入一个因子，同比营业利润增长率。把选股的代码修改为：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">fundamentals = get_fundamentals(query(valuation.code, valuation.pb_ratio</div><div class="line">                ).filter(</div><div class="line">                    valuation.pb_ratio &gt; <span class="number">0</span>,</div><div class="line">                    valuation.pb_ratio &lt; <span class="number">3</span>,</div><div class="line">                    indicator.inc_operation_profit_year_on_year &gt; <span class="number">15</span></div><div class="line">                ), context.previous_date)</div><div class="line">    fundamentals = fundamentals.set_index([<span class="string">'code'</span>])</div></pre></td></tr></table></figure>
-<p>我们加入的一个条件，同比营业利润增长率大于15%。这样策略就会将便宜（低PB）并且绩优（同比营业利润增长）的股票加入股票池，而不是仅仅选取便宜的股票。回测的结果如下：<br><img src="/uploads/2017081002.png" alt=""></p>
+<p>我们加入一个条件：同比营业利润增长率大于15%。这样策略就会将便宜（低PB）并且绩优（同比营业利润增长）的股票加入股票池，而不是仅仅选取便宜的股票。回测的结果如下：<br><img src="/uploads/2017081002.png" alt=""></p>
 <p>仅仅加入一个因子就将收益提高了3倍，总收益从74.11%提高到216.91%，年化收益从7.7%提高到16.90%。</p>
 
       
