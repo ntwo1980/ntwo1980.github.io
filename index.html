@@ -354,7 +354,7 @@
 <p>修改 root /var/www/html; 为</p>
 <p>root /home/luke/www/blog;</p>
 <p>vim blog/blog.git/hooks/post-update, 内容为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">#!/bin/sh</div><div class="line">exec git --work-tree=www/blog --git-dir=blog/blog.git checkout -f</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">#!/bin/sh</div><div class="line">exec git --work-tree=/home/luke/www/blog --git-dir=/home/luke/blog/blog.git checkout -f</div></pre></td></tr></table></figure>
 
           
         
