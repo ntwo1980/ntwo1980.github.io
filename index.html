@@ -346,6 +346,15 @@
 <h2 id="设置密码"><a href="#设置密码" class="headerlink" title="设置密码"></a>设置密码</h2><p>sudo passwd luke</p>
 <h2 id="创建公钥"><a href="#创建公钥" class="headerlink" title="创建公钥"></a>创建公钥</h2><p>mkdir /home/luke/.ssh<br>cat ./ssh/authorzied_keys &gt; /home/luke/.ssh/authorzied_keys<br>su git<br>chmod 600 ~/.ssh/authorzied_keys<br>chmod 700 ~/.ssh</p>
 <h2 id="客户端测试"><a href="#客户端测试" class="headerlink" title="客户端测试"></a>客户端测试</h2><p>ssh -v luke@SERVER</p>
+<h2 id="创建目录"><a href="#创建目录" class="headerlink" title="创建目录"></a>创建目录</h2><p>mkdir ~/blog<br>mkdir -P ~/www/blog</p>
+<h2 id="配置-nginx"><a href="#配置-nginx" class="headerlink" title="配置 nginx"></a>配置 nginx</h2><p>sudo vim /etc/nginx/nginx.config</p>
+<p>修改 include /etc/nginx/sites-enabled/*; 为<br>include /etc/nginx/sites-enabled/blog</p>
+<p>sudo cp /etc/nginx/sites-enabled/default /etc/nginx/sites-enabled/blog</p>
+<p>sudo vim /etc/nginx/sites-enabled/blog</p>
+<p>修改 root /var/www/html; 为</p>
+<p>root /home/luke/www/blog;</p>
+<p>vim blog/blog.git/hooks/post-update, 内容为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">#!/bin/sh</div><div class="line">exec git --work-tree=www/blog --git-dir=blog/blog.git checkout -f</div></pre></td></tr></table></figure>
 
           
         
