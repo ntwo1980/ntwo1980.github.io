@@ -1,0 +1,1845 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="数据统计," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="上证指数   月 样本数量 平均 最小值 最大值 正回报比率     1 12 -1.7 -23 9.3 50   2 13 2.8 -1.8 9.6 77   3 13 0.64 -20 14 46   4 13 3.8 -7.7 21 46   5 13 0.26 -9.7 14 46   6 13 -3.2 -20 12 54   7 13 2.4 -14 17 69   8 13 -1.3">
+<meta name="keywords" content="数据统计">
+<meta property="og:type" content="article">
+<meta property="og:title" content="主要指数月回报统计">
+<meta property="og:url" content="http://yoursite.com/2017/09/27/r_MonthlyReturns/index.html">
+<meta property="og:site_name" content="长毛大好的根据地">
+<meta property="og:description" content="上证指数   月 样本数量 平均 最小值 最大值 正回报比率     1 12 -1.7 -23 9.3 50   2 13 2.8 -1.8 9.6 77   3 13 0.64 -20 14 46   4 13 3.8 -7.7 21 46   5 13 0.26 -9.7 14 46   6 13 -3.2 -20 12 54   7 13 2.4 -14 17 69   8 13 -1.3">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-09-26T18:14:49.066Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="主要指数月回报统计">
+<meta name="twitter:description" content="上证指数   月 样本数量 平均 最小值 最大值 正回报比率     1 12 -1.7 -23 9.3 50   2 13 2.8 -1.8 9.6 77   3 13 0.64 -20 14 46   4 13 3.8 -7.7 21 46   5 13 0.26 -9.7 14 46   6 13 -3.2 -20 12 54   7 13 2.4 -14 17 69   8 13 -1.3">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/09/27/r_MonthlyReturns/"/>
+
+
+
+
+
+  <title>主要指数月回报统计 | 长毛大好的根据地</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?75c8a36e7d13eec4a16cf804bf7e3db2";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">长毛大好的根据地</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">编程 量化投资</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/27/r_MonthlyReturns/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="长毛大好">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="长毛大好的根据地">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">主要指数月回报统计</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-27T02:14:49+08:00">
+                2017-09-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="上证指数"><a href="#上证指数" class="headerlink" title="上证指数"></a>上证指数</h3><table>
+<thead>
+<tr>
+<th>月</th>
+<th>样本数量</th>
+<th>平均</th>
+<th>最小值</th>
+<th>最大值</th>
+<th>正回报比率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>12</td>
+<td>-1.7</td>
+<td>-23</td>
+<td>9.3</td>
+<td>50</td>
+</tr>
+<tr>
+<td>2</td>
+<td>13</td>
+<td>2.8</td>
+<td>-1.8</td>
+<td>9.6</td>
+<td>77</td>
+</tr>
+<tr>
+<td>3</td>
+<td>13</td>
+<td>0.64</td>
+<td>-20</td>
+<td>14</td>
+<td>46</td>
+</tr>
+<tr>
+<td>4</td>
+<td>13</td>
+<td>3.8</td>
+<td>-7.7</td>
+<td>21</td>
+<td>46</td>
+</tr>
+<tr>
+<td>5</td>
+<td>13</td>
+<td>0.26</td>
+<td>-9.7</td>
+<td>14</td>
+<td>46</td>
+</tr>
+<tr>
+<td>6</td>
+<td>13</td>
+<td>-3.2</td>
+<td>-20</td>
+<td>12</td>
+<td>54</td>
+</tr>
+<tr>
+<td>7</td>
+<td>13</td>
+<td>2.4</td>
+<td>-14</td>
+<td>17</td>
+<td>69</td>
+</tr>
+<tr>
+<td>8</td>
+<td>13</td>
+<td>-1.3</td>
+<td>-22</td>
+<td>17</td>
+<td>62</td>
+</tr>
+<tr>
+<td>9</td>
+<td>12</td>
+<td>0.71</td>
+<td>-8.1</td>
+<td>6.6</td>
+<td>58</td>
+</tr>
+<tr>
+<td>10</td>
+<td>12</td>
+<td>1.7</td>
+<td>-25</td>
+<td>12</td>
+<td>67</td>
+</tr>
+<tr>
+<td>11</td>
+<td>12</td>
+<td>1.5</td>
+<td>-18</td>
+<td>14</td>
+<td>67</td>
+</tr>
+<tr>
+<td>12</td>
+<td>12</td>
+<td>5.3</td>
+<td>-5.7</td>
+<td>27</td>
+<td>58</td>
+</tr>
+</tbody>
+</table>
+<h3 id="深证成指"><a href="#深证成指" class="headerlink" title="深证成指"></a>深证成指</h3><table>
+<thead>
+<tr>
+<th>月</th>
+<th>样本数量</th>
+<th>平均</th>
+<th>最小值</th>
+<th>最大值</th>
+<th>正回报比率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>12</td>
+<td>-0.95</td>
+<td>-26</td>
+<td>15</td>
+<td>50</td>
+</tr>
+<tr>
+<td>2</td>
+<td>13</td>
+<td>3.7</td>
+<td>-3.4</td>
+<td>11</td>
+<td>69</td>
+</tr>
+<tr>
+<td>3</td>
+<td>13</td>
+<td>1.2</td>
+<td>-16</td>
+<td>18</td>
+<td>54</td>
+</tr>
+<tr>
+<td>4</td>
+<td>13</td>
+<td>3.6</td>
+<td>-11</td>
+<td>27</td>
+<td>54</td>
+</tr>
+<tr>
+<td>5</td>
+<td>13</td>
+<td>1</td>
+<td>-11</td>
+<td>19</td>
+<td>54</td>
+</tr>
+<tr>
+<td>6</td>
+<td>13</td>
+<td>-3.2</td>
+<td>-22</td>
+<td>14</td>
+<td>38</td>
+</tr>
+<tr>
+<td>7</td>
+<td>13</td>
+<td>3.1</td>
+<td>-14</td>
+<td>21</td>
+<td>54</td>
+</tr>
+<tr>
+<td>8</td>
+<td>13</td>
+<td>-1.9</td>
+<td>-23</td>
+<td>18</td>
+<td>54</td>
+</tr>
+<tr>
+<td>9</td>
+<td>12</td>
+<td>0.39</td>
+<td>-9.7</td>
+<td>5.9</td>
+<td>58</td>
+</tr>
+<tr>
+<td>10</td>
+<td>12</td>
+<td>1.9</td>
+<td>-23</td>
+<td>17</td>
+<td>67</td>
+</tr>
+<tr>
+<td>11</td>
+<td>12</td>
+<td>1.9</td>
+<td>-20</td>
+<td>23</td>
+<td>67</td>
+</tr>
+<tr>
+<td>12</td>
+<td>12</td>
+<td>5</td>
+<td>-8</td>
+<td>22</td>
+<td>67</td>
+</tr>
+</tbody>
+</table>
+<h3 id="中小板指"><a href="#中小板指" class="headerlink" title="中小板指"></a>中小板指</h3><table>
+<thead>
+<tr>
+<th>月</th>
+<th>样本数量</th>
+<th>平均</th>
+<th>最小值</th>
+<th>最大值</th>
+<th>正回报比率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>9</td>
+<td>-2.1</td>
+<td>-25</td>
+<td>11</td>
+<td>44</td>
+</tr>
+<tr>
+<td>2</td>
+<td>9</td>
+<td>4.8</td>
+<td>-4.4</td>
+<td>12</td>
+<td>78</td>
+</tr>
+<tr>
+<td>3</td>
+<td>9</td>
+<td>4.1</td>
+<td>-8.6</td>
+<td>21</td>
+<td>56</td>
+</tr>
+<tr>
+<td>4</td>
+<td>9</td>
+<td>0.33</td>
+<td>-5.4</td>
+<td>9.6</td>
+<td>33</td>
+</tr>
+<tr>
+<td>5</td>
+<td>9</td>
+<td>3.7</td>
+<td>-7.8</td>
+<td>25</td>
+<td>67</td>
+</tr>
+<tr>
+<td>6</td>
+<td>9</td>
+<td>-2.2</td>
+<td>-16</td>
+<td>7.8</td>
+<td>56</td>
+</tr>
+<tr>
+<td>7</td>
+<td>10</td>
+<td>2.1</td>
+<td>-9.7</td>
+<td>13</td>
+<td>70</td>
+</tr>
+<tr>
+<td>8</td>
+<td>10</td>
+<td>-2.3</td>
+<td>-19</td>
+<td>12</td>
+<td>50</td>
+</tr>
+<tr>
+<td>9</td>
+<td>9</td>
+<td>-0.13</td>
+<td>-12</td>
+<td>8.8</td>
+<td>56</td>
+</tr>
+<tr>
+<td>10</td>
+<td>9</td>
+<td>0.62</td>
+<td>-22</td>
+<td>15</td>
+<td>56</td>
+</tr>
+<tr>
+<td>11</td>
+<td>9</td>
+<td>2.6</td>
+<td>-12</td>
+<td>17</td>
+<td>67</td>
+</tr>
+<tr>
+<td>12</td>
+<td>9</td>
+<td>0.88</td>
+<td>-13</td>
+<td>15</td>
+<td>44</td>
+</tr>
+</tbody>
+</table>
+<h3 id="创业板综合指数"><a href="#创业板综合指数" class="headerlink" title="创业板综合指数"></a>创业板综合指数</h3><table>
+<thead>
+<tr>
+<th>月</th>
+<th>样本数量</th>
+<th>平均</th>
+<th>最小值</th>
+<th>最大值</th>
+<th>正回报比率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>7</td>
+<td>-3</td>
+<td>-29</td>
+<td>13</td>
+<td>43</td>
+</tr>
+<tr>
+<td>2</td>
+<td>7</td>
+<td>5.6</td>
+<td>-5.7</td>
+<td>14</td>
+<td>71</td>
+</tr>
+<tr>
+<td>3</td>
+<td>7</td>
+<td>2.7</td>
+<td>-8.2</td>
+<td>24</td>
+<td>29</td>
+</tr>
+<tr>
+<td>4</td>
+<td>7</td>
+<td>0.6</td>
+<td>-9.3</td>
+<td>19</td>
+<td>43</td>
+</tr>
+<tr>
+<td>5</td>
+<td>7</td>
+<td>7.7</td>
+<td>-7.2</td>
+<td>34</td>
+<td>71</td>
+</tr>
+<tr>
+<td>6</td>
+<td>7</td>
+<td>-0.97</td>
+<td>-18</td>
+<td>8.2</td>
+<td>57</td>
+</tr>
+<tr>
+<td>7</td>
+<td>7</td>
+<td>-2.1</td>
+<td>-13</td>
+<td>12</td>
+<td>29</td>
+</tr>
+<tr>
+<td>8</td>
+<td>7</td>
+<td>1.5</td>
+<td>-20</td>
+<td>6.8</td>
+<td>86</td>
+</tr>
+<tr>
+<td>9</td>
+<td>7</td>
+<td>-0.0031</td>
+<td>-14</td>
+<td>13</td>
+<td>43</td>
+</tr>
+<tr>
+<td>10</td>
+<td>7</td>
+<td>4.8</td>
+<td>-7.4</td>
+<td>19</td>
+<td>57</td>
+</tr>
+<tr>
+<td>11</td>
+<td>7</td>
+<td>4.1</td>
+<td>-12</td>
+<td>13</td>
+<td>71</td>
+</tr>
+<tr>
+<td>12</td>
+<td>7</td>
+<td>-2.4</td>
+<td>-13</td>
+<td>18</td>
+<td>29</td>
+</tr>
+</tbody>
+</table>
+<h3 id="中证500"><a href="#中证500" class="headerlink" title="中证500"></a>中证500</h3><table>
+<thead>
+<tr>
+<th>月</th>
+<th>样本数量</th>
+<th>平均</th>
+<th>最小值</th>
+<th>最大值</th>
+<th>正回报比率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>10</td>
+<td>-1.4</td>
+<td>-28</td>
+<td>15</td>
+<td>50</td>
+</tr>
+<tr>
+<td>2</td>
+<td>11</td>
+<td>7</td>
+<td>-2.2</td>
+<td>17</td>
+<td>91</td>
+</tr>
+<tr>
+<td>3</td>
+<td>11</td>
+<td>3.4</td>
+<td>-20</td>
+<td>21</td>
+<td>45</td>
+</tr>
+<tr>
+<td>4</td>
+<td>11</td>
+<td>3.6</td>
+<td>-6.7</td>
+<td>33</td>
+<td>36</td>
+</tr>
+<tr>
+<td>5</td>
+<td>11</td>
+<td>2.3</td>
+<td>-8.1</td>
+<td>18</td>
+<td>55</td>
+</tr>
+<tr>
+<td>6</td>
+<td>11</td>
+<td>-6</td>
+<td>-25</td>
+<td>5.4</td>
+<td>45</td>
+</tr>
+<tr>
+<td>7</td>
+<td>11</td>
+<td>5</td>
+<td>-13</td>
+<td>23</td>
+<td>82</td>
+</tr>
+<tr>
+<td>8</td>
+<td>11</td>
+<td>-2</td>
+<td>-24</td>
+<td>11</td>
+<td>55</td>
+</tr>
+<tr>
+<td>9</td>
+<td>10</td>
+<td>-0.12</td>
+<td>-13</td>
+<td>11</td>
+<td>60</td>
+</tr>
+<tr>
+<td>10</td>
+<td>10</td>
+<td>0.14</td>
+<td>-27</td>
+<td>16</td>
+<td>60</td>
+</tr>
+<tr>
+<td>11</td>
+<td>10</td>
+<td>2.7</td>
+<td>-11</td>
+<td>18</td>
+<td>70</td>
+</tr>
+<tr>
+<td>12</td>
+<td>10</td>
+<td>2.2</td>
+<td>-14</td>
+<td>20</td>
+<td>60</td>
+</tr>
+</tbody>
+</table>
+<h3 id="红利指数"><a href="#红利指数" class="headerlink" title="红利指数"></a>红利指数</h3><table>
+<thead>
+<tr>
+<th>月</th>
+<th>样本数量</th>
+<th>平均</th>
+<th>最小值</th>
+<th>最大值</th>
+<th>正回报比率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>12</td>
+<td>0.43</td>
+<td>-20</td>
+<td>18</td>
+<td>58</td>
+</tr>
+<tr>
+<td>2</td>
+<td>13</td>
+<td>3.3</td>
+<td>-1.9</td>
+<td>9.5</td>
+<td>85</td>
+</tr>
+<tr>
+<td>3</td>
+<td>13</td>
+<td>0.51</td>
+<td>-23</td>
+<td>17</td>
+<td>54</td>
+</tr>
+<tr>
+<td>4</td>
+<td>13</td>
+<td>4.3</td>
+<td>-8.5</td>
+<td>31</td>
+<td>54</td>
+</tr>
+<tr>
+<td>5</td>
+<td>13</td>
+<td>0.27</td>
+<td>-9.3</td>
+<td>14</td>
+<td>46</td>
+</tr>
+<tr>
+<td>6</td>
+<td>13</td>
+<td>-4.5</td>
+<td>-27</td>
+<td>8.7</td>
+<td>31</td>
+</tr>
+<tr>
+<td>7</td>
+<td>13</td>
+<td>3</td>
+<td>-15</td>
+<td>25</td>
+<td>62</td>
+</tr>
+<tr>
+<td>8</td>
+<td>13</td>
+<td>-2.1</td>
+<td>-24</td>
+<td>20</td>
+<td>46</td>
+</tr>
+<tr>
+<td>9</td>
+<td>12</td>
+<td>0.7</td>
+<td>-6</td>
+<td>7.4</td>
+<td>58</td>
+</tr>
+<tr>
+<td>10</td>
+<td>12</td>
+<td>1.1</td>
+<td>-29</td>
+<td>13</td>
+<td>67</td>
+</tr>
+<tr>
+<td>11</td>
+<td>12</td>
+<td>2.2</td>
+<td>-17</td>
+<td>20</td>
+<td>58</td>
+</tr>
+<tr>
+<td>12</td>
+<td>12</td>
+<td>5.4</td>
+<td>-5.2</td>
+<td>21</td>
+<td>58</td>
+</tr>
+</tbody>
+</table>
+<h3 id="中证主要消费指数"><a href="#中证主要消费指数" class="headerlink" title="中证主要消费指数"></a>中证主要消费指数</h3><table>
+<thead>
+<tr>
+<th>月</th>
+<th>样本数量</th>
+<th>平均</th>
+<th>最小值</th>
+<th>最大值</th>
+<th>正回报比率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>8</td>
+<td>-4.5</td>
+<td>-19</td>
+<td>1.7</td>
+<td>25</td>
+</tr>
+<tr>
+<td>2</td>
+<td>8</td>
+<td>4.1</td>
+<td>-0.68</td>
+<td>12</td>
+<td>88</td>
+</tr>
+<tr>
+<td>3</td>
+<td>8</td>
+<td>2.1</td>
+<td>-4.7</td>
+<td>15</td>
+<td>38</td>
+</tr>
+<tr>
+<td>4</td>
+<td>8</td>
+<td>1.6</td>
+<td>-3.6</td>
+<td>14</td>
+<td>50</td>
+</tr>
+<tr>
+<td>5</td>
+<td>8</td>
+<td>1.7</td>
+<td>-3.6</td>
+<td>9.7</td>
+<td>62</td>
+</tr>
+<tr>
+<td>6</td>
+<td>8</td>
+<td>-1.2</td>
+<td>-9.6</td>
+<td>8.2</td>
+<td>50</td>
+</tr>
+<tr>
+<td>7</td>
+<td>8</td>
+<td>2.6</td>
+<td>-11</td>
+<td>11</td>
+<td>75</td>
+</tr>
+<tr>
+<td>8</td>
+<td>9</td>
+<td>-0.42</td>
+<td>-9.7</td>
+<td>12</td>
+<td>56</td>
+</tr>
+<tr>
+<td>9</td>
+<td>8</td>
+<td>0.22</td>
+<td>-12</td>
+<td>6.8</td>
+<td>62</td>
+</tr>
+<tr>
+<td>10</td>
+<td>8</td>
+<td>3</td>
+<td>-3.6</td>
+<td>11</td>
+<td>62</td>
+</tr>
+<tr>
+<td>11</td>
+<td>8</td>
+<td>2.6</td>
+<td>-13</td>
+<td>18</td>
+<td>75</td>
+</tr>
+<tr>
+<td>12</td>
+<td>8</td>
+<td>0.17</td>
+<td>-15</td>
+<td>9.3</td>
+<td>50</td>
+</tr>
+</tbody>
+</table>
+<h3 id="中证医药卫生指数"><a href="#中证医药卫生指数" class="headerlink" title="中证医药卫生指数"></a>中证医药卫生指数</h3><table>
+<thead>
+<tr>
+<th>月</th>
+<th>样本数量</th>
+<th>平均</th>
+<th>最小值</th>
+<th>最大值</th>
+<th>正回报比率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>8</td>
+<td>-2.4</td>
+<td>-25</td>
+<td>12</td>
+<td>38</td>
+</tr>
+<tr>
+<td>2</td>
+<td>8</td>
+<td>3.6</td>
+<td>-2.7</td>
+<td>9.6</td>
+<td>88</td>
+</tr>
+<tr>
+<td>3</td>
+<td>8</td>
+<td>1.7</td>
+<td>-7</td>
+<td>17</td>
+<td>50</td>
+</tr>
+<tr>
+<td>4</td>
+<td>8</td>
+<td>1.3</td>
+<td>-4.2</td>
+<td>15</td>
+<td>38</td>
+</tr>
+<tr>
+<td>5</td>
+<td>8</td>
+<td>3.5</td>
+<td>-6.2</td>
+<td>16</td>
+<td>75</td>
+</tr>
+<tr>
+<td>6</td>
+<td>8</td>
+<td>-2.4</td>
+<td>-16</td>
+<td>5.2</td>
+<td>62</td>
+</tr>
+<tr>
+<td>7</td>
+<td>8</td>
+<td>1.9</td>
+<td>-9.2</td>
+<td>9.6</td>
+<td>62</td>
+</tr>
+<tr>
+<td>8</td>
+<td>9</td>
+<td>-1.1</td>
+<td>-13</td>
+<td>11</td>
+<td>33</td>
+</tr>
+<tr>
+<td>9</td>
+<td>8</td>
+<td>1.8</td>
+<td>-12</td>
+<td>8.2</td>
+<td>62</td>
+</tr>
+<tr>
+<td>10</td>
+<td>8</td>
+<td>4</td>
+<td>-7</td>
+<td>13</td>
+<td>88</td>
+</tr>
+<tr>
+<td>11</td>
+<td>8</td>
+<td>1.8</td>
+<td>-10</td>
+<td>10</td>
+<td>75</td>
+</tr>
+<tr>
+<td>12</td>
+<td>8</td>
+<td>-0.69</td>
+<td>-13</td>
+<td>9.4</td>
+<td>50</td>
+</tr>
+</tbody>
+</table>
+<h3 id="国证食品"><a href="#国证食品" class="headerlink" title="国证食品"></a>国证食品</h3><table>
+<thead>
+<tr>
+<th>月</th>
+<th>样本数量</th>
+<th>平均</th>
+<th>最小值</th>
+<th>最大值</th>
+<th>正回报比率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>5</td>
+<td>-5.8</td>
+<td>-20</td>
+<td>1.3</td>
+<td>20</td>
+</tr>
+<tr>
+<td>2</td>
+<td>5</td>
+<td>2.2</td>
+<td>-1.4</td>
+<td>4.3</td>
+<td>80</td>
+</tr>
+<tr>
+<td>3</td>
+<td>5</td>
+<td>5.4</td>
+<td>-3.4</td>
+<td>16</td>
+<td>60</td>
+</tr>
+<tr>
+<td>4</td>
+<td>5</td>
+<td>2.3</td>
+<td>-3.9</td>
+<td>15</td>
+<td>60</td>
+</tr>
+<tr>
+<td>5</td>
+<td>5</td>
+<td>3.3</td>
+<td>-3.3</td>
+<td>8.8</td>
+<td>80</td>
+</tr>
+<tr>
+<td>6</td>
+<td>5</td>
+<td>1</td>
+<td>-8.6</td>
+<td>8</td>
+<td>40</td>
+</tr>
+<tr>
+<td>7</td>
+<td>5</td>
+<td>0.78</td>
+<td>-14</td>
+<td>10</td>
+<td>80</td>
+</tr>
+<tr>
+<td>8</td>
+<td>5</td>
+<td>-1</td>
+<td>-9.4</td>
+<td>3.1</td>
+<td>60</td>
+</tr>
+<tr>
+<td>9</td>
+<td>4</td>
+<td>-0.44</td>
+<td>-5.3</td>
+<td>5.1</td>
+<td>50</td>
+</tr>
+<tr>
+<td>10</td>
+<td>4</td>
+<td>1.8</td>
+<td>-4.9</td>
+<td>9.8</td>
+<td>50</td>
+</tr>
+<tr>
+<td>11</td>
+<td>5</td>
+<td>-1.6</td>
+<td>-16</td>
+<td>3.2</td>
+<td>60</td>
+</tr>
+<tr>
+<td>12</td>
+<td>5</td>
+<td>4.3</td>
+<td>-3.4</td>
+<td>12</td>
+<td>60</td>
+</tr>
+</tbody>
+</table>
+<h3 id="TMT50"><a href="#TMT50" class="headerlink" title="TMT50"></a>TMT50</h3><table>
+<thead>
+<tr>
+<th>月</th>
+<th>样本数量</th>
+<th>平均</th>
+<th>最小值</th>
+<th>最大值</th>
+<th>正回报比率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>7</td>
+<td>-1.8</td>
+<td>-26</td>
+<td>14</td>
+<td>43</td>
+</tr>
+<tr>
+<td>2</td>
+<td>7</td>
+<td>6.1</td>
+<td>-6</td>
+<td>14</td>
+<td>71</td>
+</tr>
+<tr>
+<td>3</td>
+<td>7</td>
+<td>2.7</td>
+<td>-8.2</td>
+<td>17</td>
+<td>57</td>
+</tr>
+<tr>
+<td>4</td>
+<td>7</td>
+<td>2.7</td>
+<td>-4.8</td>
+<td>21</td>
+<td>43</td>
+</tr>
+<tr>
+<td>5</td>
+<td>7</td>
+<td>5.3</td>
+<td>-7</td>
+<td>20</td>
+<td>71</td>
+</tr>
+<tr>
+<td>6</td>
+<td>7</td>
+<td>-2.1</td>
+<td>-18</td>
+<td>8.8</td>
+<td>57</td>
+</tr>
+<tr>
+<td>7</td>
+<td>7</td>
+<td>-1.7</td>
+<td>-10</td>
+<td>9.7</td>
+<td>43</td>
+</tr>
+<tr>
+<td>8</td>
+<td>7</td>
+<td>-0.54</td>
+<td>-18</td>
+<td>5.6</td>
+<td>71</td>
+</tr>
+<tr>
+<td>9</td>
+<td>6</td>
+<td>-0.67</td>
+<td>-11</td>
+<td>8.2</td>
+<td>50</td>
+</tr>
+<tr>
+<td>10</td>
+<td>6</td>
+<td>1.9</td>
+<td>-8</td>
+<td>18</td>
+<td>50</td>
+</tr>
+<tr>
+<td>11</td>
+<td>6</td>
+<td>-0.15</td>
+<td>-9.8</td>
+<td>7.2</td>
+<td>67</td>
+</tr>
+<tr>
+<td>12</td>
+<td>7</td>
+<td>-1</td>
+<td>-11</td>
+<td>14</td>
+<td>43</td>
+</tr>
+</tbody>
+</table>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/数据统计/" rel="tag"># 数据统计</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/09/27/r_WeekdaylyReturns/" rel="next" title="主要指数周内回报统计">
+                <i class="fa fa-chevron-left"></i> 主要指数周内回报统计
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/09/27/r_QuarterlyReturns/" rel="prev" title="主要指数季度回报统计">
+                主要指数季度回报统计 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="uyan_frame"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.png"
+               alt="长毛大好" />
+          <p class="site-author-name" itemprop="name">长毛大好</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">38</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.joinquant.com/" title="聚宽" target="_blank">聚宽</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="2017/09/06/Month/" title="月历" target="_blank">月历</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#上证指数"><span class="nav-number">1.</span> <span class="nav-text">上证指数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#深证成指"><span class="nav-number">2.</span> <span class="nav-text">深证成指</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#中小板指"><span class="nav-number">3.</span> <span class="nav-text">中小板指</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创业板综合指数"><span class="nav-number">4.</span> <span class="nav-text">创业板综合指数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#中证500"><span class="nav-number">5.</span> <span class="nav-text">中证500</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#红利指数"><span class="nav-number">6.</span> <span class="nav-text">红利指数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#中证主要消费指数"><span class="nav-number">7.</span> <span class="nav-text">中证主要消费指数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#中证医药卫生指数"><span class="nav-number">8.</span> <span class="nav-text">中证医药卫生指数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#国证食品"><span class="nav-number">9.</span> <span class="nav-text">国证食品</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TMT50"><span class="nav-number">10.</span> <span class="nav-text">TMT50</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">长毛大好</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Gemini
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+
+    
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2140938"></script>
+      <!-- UY END -->
+    
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
