@@ -270,6 +270,431 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/10/TradingSystem3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="长毛大好">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="长毛大好的根据地">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/10/TradingSystem3/" itemprop="url">从零构建股票交易系统 - 优化</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-10T20:59:45+08:00">
+                2017-08-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在上一篇中我们创建了一个PB轮动的策略，但是策略收益差强人意。这一篇我们对这个策略进行优化，以提高收益。</p>
+<h2 id="优化股票池"><a href="#优化股票池" class="headerlink" title="优化股票池"></a>优化股票池</h2><p>查看回测结果，可以发现单一的低PB因子选择的大部分是钢铁股。而钢铁股这种强周期股几年才有一次行情。所以策略大部分时间跑输基准也不奇怪了。</p>
+<p>我们再加入一个因子，同比营业利润增长率。把选股的代码修改为：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">fundamentals = get_fundamentals(query(valuation.code, valuation.pb_ratio</div><div class="line">                ).filter(</div><div class="line">                    valuation.pb_ratio &gt; <span class="number">0</span>,</div><div class="line">                    valuation.pb_ratio &lt; <span class="number">3</span>,</div><div class="line">                    indicator.inc_operation_profit_year_on_year &gt; <span class="number">15</span></div><div class="line">                ), context.previous_date)</div><div class="line">    fundamentals = fundamentals.set_index([<span class="string">'code'</span>])</div></pre></td></tr></table></figure>
+<p>我们加入一个条件：同比营业利润增长率大于15%。这样策略就会将便宜（低PB）并且绩优（同比营业利润增长）的股票加入股票池，而不是仅仅选取便宜的股票。回测的结果如下：<br><img src="/uploads/2017081002.png" alt=""></p>
+<p>仅仅加入一个因子就将收益提高了3倍，总收益从74.11%提高到216.91%，年化收益从7.7%提高到16.90%。并且几乎所有时间都是跑盈基准的。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/09/TradingSystem2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="长毛大好">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="长毛大好的根据地">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/09/TradingSystem2/" itemprop="url">从零构建股票交易系统 - 交易</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-09T21:03:41+08:00">
+                2017-08-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>根据基本面数据分析的结果，PB是一个影响股票价格的效果显著的因子。我们可以使用这个因子开发一个PB轮动的单因子交易系统。</p>
+<h2 id="PB轮动交易系统"><a href="#PB轮动交易系统" class="headerlink" title="PB轮动交易系统"></a>PB轮动交易系统</h2><p>在<a href="https://www.joinquant.com" target="_blank" rel="external">聚宽</a>中创建一个交易策略。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 导入函数库</span></div><div class="line"><span class="keyword">import</span> jqdata</div><div class="line"></div><div class="line"><span class="comment"># 初始化函数，设定基准等等</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">initialize</span><span class="params">(context)</span>:</span></div><div class="line">    set_params(context)    <span class="comment">#1 设置策参数</span></div><div class="line"></div><div class="line">    <span class="comment"># 设定沪深300作为基准</span></div><div class="line">    set_benchmark(<span class="string">'000300.XSHG'</span>)</div><div class="line">    <span class="comment"># 开启动态复权模式(真实价格)</span></div><div class="line">    set_option(<span class="string">'use_real_price'</span>, <span class="keyword">True</span>)</div><div class="line">    <span class="comment"># 输出内容到日志 log.info()</span></div><div class="line">    log.info(<span class="string">'初始函数开始运行且全局只运行一次'</span>)</div><div class="line">    <span class="comment"># 过滤掉order系列API产生的比error级别低的log</span></div><div class="line">    <span class="comment"># log.set_level('order', 'error')</span></div><div class="line"></div><div class="line">    <span class="comment">### 股票相关设定 ###</span></div><div class="line">    <span class="comment"># 股票类每笔交易时的手续费是：买入时佣金万分之三，卖出时佣金万分之三加千分之一印花税, 每笔交易佣金最低扣5块钱</span></div><div class="line">    set_order_cost(OrderCost(close_tax=<span class="number">0.001</span>, open_commission=<span class="number">0.0003</span>, close_commission=<span class="number">0.0003</span>, min_commission=<span class="number">5</span>), type=<span class="string">'stock'</span>)</div><div class="line"></div><div class="line">    <span class="comment">## 运行函数（reference_security为运行时间的参考标的；传入的标的只做种类区分，因此传入'000300.XSHG'或'510300.XSHG'是一样的）</span></div><div class="line">      <span class="comment"># 开盘前运行</span></div><div class="line">    run_daily(before_market_open, time=<span class="string">'before_open'</span>, reference_security=<span class="string">'000300.XSHG'</span>)</div><div class="line">      <span class="comment"># 开盘时运行</span></div><div class="line">    run_daily(market_open, time=<span class="string">'open'</span>, reference_security=<span class="string">'000300.XSHG'</span>)</div><div class="line">      <span class="comment"># 收盘后运行</span></div><div class="line">    run_daily(after_market_close, time=<span class="string">'after_close'</span>, reference_security=<span class="string">'000300.XSHG'</span>)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">set_params</span><span class="params">(context)</span>:</span></div><div class="line">    g.trade_interval = <span class="number">21</span>   <span class="comment"># 轮动周期</span></div><div class="line">    g.stocks_to_buy = <span class="number">10</span>    <span class="comment"># 买入股票数量</span></div><div class="line">    g.counter = <span class="number">0</span></div><div class="line"></div><div class="line"><span class="comment">## 开盘前运行函数</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">before_market_open</span><span class="params">(context)</span>:</span></div><div class="line">    g.counter = g.counter + <span class="number">1</span></div><div class="line">    <span class="keyword">if</span> g.counter % g.trade_interval != <span class="number">1</span>:</div><div class="line">        <span class="keyword">return</span></div><div class="line"></div><div class="line">    fundamentals = get_fundamentals(query(valuation.code, valuation.pb_ratio</div><div class="line">                ).filter(</div><div class="line">                    valuation.pb_ratio &gt; <span class="number">0</span>,</div><div class="line">                    valuation.pb_ratio &lt; <span class="number">3</span></div><div class="line">                ), context.previous_date)</div><div class="line">    fundamentals = fundamentals.set_index([<span class="string">'code'</span>])</div><div class="line"></div><div class="line">    <span class="comment"># 要操作的股票：</span></div><div class="line">    g.stocks = list(fundamentals.sort(<span class="string">"pb_ratio"</span>, ascending = <span class="keyword">True</span>).index)[:g.stocks_to_buy]</div><div class="line"></div><div class="line"><span class="comment">## 开盘时运行函数</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">market_open</span><span class="params">(context)</span>:</span></div><div class="line">    <span class="keyword">if</span> g.counter % g.trade_interval != <span class="number">1</span>:</div><div class="line">        <span class="keyword">return</span></div><div class="line"></div><div class="line">    every_stock_amount = context.portfolio.total_value / g.stocks_to_buy</div><div class="line"></div><div class="line">    <span class="keyword">if</span> len(list(context.portfolio.positions.keys()))==<span class="number">0</span>:</div><div class="line">        <span class="keyword">if</span> len(g.stocks):</div><div class="line">            <span class="keyword">for</span> stock <span class="keyword">in</span> g.stocks:</div><div class="line">                order_target_value(stock, every_stock_amount)</div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        <span class="keyword">for</span> stock <span class="keyword">in</span> context.portfolio.positions.keys():</div><div class="line">            <span class="keyword">if</span> stock <span class="keyword">not</span> <span class="keyword">in</span> g.stocks:</div><div class="line">                order_target_value(stock, <span class="number">0</span>)</div><div class="line"></div><div class="line">        <span class="keyword">if</span> len(g.stocks):</div><div class="line">            <span class="keyword">for</span> stock <span class="keyword">in</span> g.stocks:</div><div class="line">                order_target_value(stock, every_stock_amount)</div><div class="line"></div><div class="line"><span class="comment">## 收盘后运行函数</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">after_market_close</span><span class="params">(context)</span>:</span></div><div class="line">    <span class="keyword">pass</span></div></pre></td></tr></table></figure>
+<p>上面的策略是买入市盈率最低的十只股票，每21天轮动一次。也就是每21天检测市盈率，卖出不符合条件的股票，买入符合条件的股票。</p>
+<p>策略回测的结果如下：<br><img src="/uploads/2017081001.png" alt=""></p>
+<p>策略从2010-1-1至2017-8-9收益74.11%，年化收益7.7%。并且有2015年以前都是跑输基准的。这个结果只能说是差强人意。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/08/TradingSystem1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="长毛大好">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="长毛大好的根据地">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/08/TradingSystem1/" itemprop="url">从零构建股票交易系统 - 股票池</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-08T08:32:56+08:00">
+                2017-08-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>从零构建股票交易系统是一系列文章，阐述怎样从零开发一个可用的股票交易系统。开发平台使用<a href="https://www.joinquant.com" target="_blank" rel="external">聚宽</a>。</p>
+<h2 id="基本面因子"><a href="#基本面因子" class="headerlink" title="基本面因子"></a>基本面因子</h2><p>股票与其它投资工具的一个显著的区别是股票投资的企业的股权，而企业是可以产生利润的。所以从长期来看，股票市场总体上不断上升的。但股票也有优劣之分，有的盈利，有的则亏损；有的弹性大，有的弹性小；有的成交量大，方便资金进出，有的成交量小，稍大的资金量就会引起股票价格的波动。本交易系统追求小资金量的收益最大化。目前沪深两市有超过3000支股票可供选择，通过什么方法从中筛选出合适的股票形成交易系统的股票池呢？既然我们追求收益最大化，可以使用倒推的方法，通过研究过去收益最大的股票的特征，可能会给我们一些启发。</p>
+<h3 id="数据统计"><a href="#数据统计" class="headerlink" title="数据统计"></a>数据统计</h3><p>聚宽提供了丰富的基本面数据，具体数据种类可以查看：<a href="https://www.joinquant.com/data/dict/fundamentals" target="_blank" rel="external">聚宽股票财务数据</a>。以下代码获取过去一年涨幅排名靠前的股票，检查它们与基本面因子的关系。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> math</div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div><div class="line"><span class="keyword">import</span> matplotlib <span class="keyword">as</span> mpl</div><div class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</div><div class="line"><span class="keyword">from</span> scipy <span class="keyword">import</span> stats</div><div class="line"><span class="keyword">import</span> myutils <span class="keyword">as</span> u</div><div class="line"></div><div class="line">pd.set_option(<span class="string">'display.notebook_repr_html'</span>, <span class="keyword">False</span>)</div><div class="line">pd.set_option(<span class="string">'display.max_rows'</span>, <span class="number">9999</span>)</div><div class="line">pd.set_option(<span class="string">'precision'</span>, <span class="number">3</span>)</div><div class="line"></div><div class="line">last_two_year_dt = u.shift_trading_day(u.today_dt, <span class="number">-480</span>)    <span class="comment"># 只检查上市至少上市两年的股票，排除新股。新股容易遭炒作。</span></div><div class="line">last_year_dt = u.shift_trading_day(u.today_dt, <span class="number">-240</span>)        <span class="comment"># 一年前</span></div><div class="line">yesterday_dt = u.shift_trading_day(u.today_dt, <span class="number">-1</span>)          <span class="comment"># 上个交易日</span></div><div class="line">stocks = get_all_securities(date=last_two_year_dt)</div><div class="line"></div><div class="line">prices_current = get_price(list(stocks.index), end_date=yesterday_dt, fields=[<span class="string">'close'</span>], skip_paused=<span class="keyword">False</span>, fq=<span class="string">'pre'</span>, count=<span class="number">1</span>)[<span class="string">'close'</span>].T.ix[:,<span class="number">0</span>]    <span class="comment">#上个交易日价格</span></div><div class="line">prices_last_year = get_price(list(stocks.index), end_date=last_year_dt, fields=[<span class="string">'close'</span>], skip_paused=<span class="keyword">False</span>, fq=<span class="string">'pre'</span>, count=<span class="number">1</span>)[<span class="string">'close'</span>].T.ix[:,<span class="number">0</span>]  <span class="comment"># 一年前价格</span></div><div class="line"></div><div class="line">pct_change = pd.DataFrame(&#123;<span class="string">'return'</span>: (prices_current - prices_last_year) / prices_last_year * <span class="number">100</span>&#125;)   <span class="comment"># 一年涨幅</span></div><div class="line"></div><div class="line"><span class="comment"># 获取基本面数据</span></div><div class="line">fundamentals = get_fundamentals(query(valuation.code, valuation.market_cap, valuation.circulating_market_cap, valuation.pe_ratio,</div><div class="line">                                      valuation.pe_ratio_lyr, valuation.pb_ratio, valuation.ps_ratio, valuation.pcf_ratio,</div><div class="line">                                      balance.cash_equivalents, balance.account_receivable, balance.advance_payment,</div><div class="line">                                      balance.other_receivable, balance.inventories,</div><div class="line">                                      balance.total_current_assets, balance.fixed_assets, balance.total_non_current_assets, balance.total_assets,</div><div class="line">                                      balance.accounts_payable, balance.advance_peceipts, balance.salaries_payable, balance.taxs_payable,</div><div class="line">                                      balance.total_current_liability, balance.total_non_current_liability, balance.total_liability, balance.paidin_capital,</div><div class="line">                                      balance.capital_reserve_fund, balance.surplus_reserve_fund, balance.retained_profit, balance.equities_parent_company_owners,</div><div class="line">                                      balance.total_owner_equities, balance.total_sheet_owner_equities,</div><div class="line">                                      income.total_operating_revenue, income.operating_revenue, income.total_operating_cost, income.operating_cost,</div><div class="line">                                      income.operating_tax_surcharges, income.sale_expense, income.administration_expense, income.financial_expense,</div><div class="line">                                      income.asset_impairment_loss, income.operating_profit, income.non_operating_revenue, income.non_operating_expense,</div><div class="line">                                      income.total_profit, income.income_tax_expense, income.net_profit, income.np_parent_company_owners, income.basic_eps,</div><div class="line">                                      income.diluted_eps, income.total_composite_income, income.ci_parent_company_owners,</div><div class="line">                                      indicator.eps, indicator.adjusted_profit, indicator.operating_profit, indicator.value_change_profit, indicator.roe,</div><div class="line">                                      indicator.inc_return, indicator.roa, indicator.net_profit_margin, indicator.gross_profit_margin, indicator.expense_to_total_revenue,</div><div class="line">                                      indicator.operation_profit_to_total_revenue, indicator.net_profit_to_total_revenue, indicator.operating_expense_to_total_revenue,</div><div class="line">                                      indicator.ga_expense_to_total_revenue, indicator.financing_expense_to_total_revenue, indicator.operating_profit_to_profit,</div><div class="line">                                      indicator.invesment_profit_to_profit, indicator.adjusted_profit_to_profit, indicator.goods_sale_and_service_to_revenue,</div><div class="line">                                      indicator.ocf_to_revenue, indicator.ocf_to_operating_profit, indicator.inc_total_revenue_year_on_year, indicator.inc_total_revenue_annual,</div><div class="line">                                      indicator.inc_revenue_year_on_year, indicator.inc_revenue_annual, indicator.inc_operation_profit_year_on_year, indicator.inc_operation_profit_annual,</div><div class="line">                                      indicator.inc_net_profit_year_on_year, indicator.inc_net_profit_annual, indicator.inc_net_profit_to_shareholders_year_on_year,</div><div class="line">                                      indicator.inc_net_profit_to_shareholders_annual</div><div class="line"></div><div class="line">            ).filter(</div><div class="line">                indicator.code.in_(list(stocks.index))</div><div class="line">            ), last_year_dt)   <span class="comment"># 取去年的数据，不能到当前的数据，否则就是使用了未来的数据</span></div><div class="line"></div><div class="line">fundamentals.index = fundamentals[<span class="string">'code'</span>]</div><div class="line">fundamentals[<span class="string">'peg'</span>] = fundamentals.apply(<span class="keyword">lambda</span> row: <span class="number">100000</span> <span class="keyword">if</span> row[<span class="string">'pe_ratio'</span>] &lt;= <span class="number">0</span> <span class="keyword">or</span> row[<span class="string">'inc_net_profit_year_on_year'</span>] &lt;=<span class="number">0</span> <span class="keyword">else</span> row[<span class="string">'pe_ratio'</span>] / row[<span class="string">'inc_net_profit_year_on_year'</span>],axis=<span class="number">1</span>)    <span class="comment"># 增加peg因子</span></div><div class="line">fundamentals.ix[fundamentals[<span class="string">'pe_ratio_lyr'</span>] &lt;<span class="number">0</span> , <span class="string">'pe_ratio_lyr'</span>] = <span class="number">10000</span>       <span class="comment"># 亏损股PE是负数，重置为一个大数。排序时，亏损股当作pe很高的股票。</span></div><div class="line">fundamentals.ix[fundamentals[<span class="string">'pe_ratio'</span>] &lt;<span class="number">0</span> , <span class="string">'pe_ratio'</span>] = <span class="number">100000</span>              <span class="comment"># 亏损股PE是负数，重置为一个大数。排序时，亏损股当作pe很高的股票。</span></div><div class="line"></div><div class="line"><span class="keyword">del</span> fundamentals[<span class="string">'code'</span>]</div><div class="line"></div><div class="line"><span class="keyword">for</span> col <span class="keyword">in</span> fundamentals.columns:</div><div class="line">    fundamentals[col+<span class="string">'_r'</span>] = np.round(fundamentals[col].rank(ascending = <span class="keyword">True</span>, method = <span class="string">'max'</span>, pct=<span class="keyword">True</span>) * <span class="number">100</span>)    <span class="comment"># 对每个因子进行排序</span></div><div class="line"></div><div class="line">df = pd.concat([fundamentals, pct_change], axis=<span class="number">1</span>)</div><div class="line">df = df.sort(<span class="string">'return'</span>, ascending = <span class="keyword">False</span>)       <span class="comment"># 根据涨幅排序</span></div><div class="line"></div><div class="line">write_file(<span class="string">'data/factors.csv'</span>, df.to_csv(header=<span class="keyword">True</span>), append=<span class="keyword">False</span>)   <span class="comment"># 保存所有数据</span></div><div class="line"></div><div class="line"><span class="keyword">for</span> col <span class="keyword">in</span> df.columns:</div><div class="line">    <span class="keyword">if</span> <span class="keyword">not</span> col.endswith(<span class="string">'_r'</span>):</div><div class="line">        <span class="keyword">del</span> df[col]</div><div class="line"></div><div class="line">top_20_pct_len = int(df.shape[<span class="number">0</span>] * <span class="number">0.2</span>)</div><div class="line">top_20_pct_df = pd.DataFrame(df.ix[:top_20_pct_len, :])</div><div class="line"></div><div class="line">stat_df = top_20_pct_df.quantile([<span class="number">.25</span>, <span class="number">.5</span>, <span class="number">.75</span>])  <span class="comment"># 只统计0.25, 0.5, 0.75分位的数据</span></div><div class="line"></div><div class="line">write_file(<span class="string">'data/factors_stat.csv'</span>, stat_df.to_csv(header=<span class="keyword">True</span>), append=<span class="keyword">False</span>)   <span class="comment"># 保存0.25, 0.5, 0.75分位的数据</span></div></pre></td></tr></table></figure></p>
+<h3 id="数据分析"><a href="#数据分析" class="headerlink" title="数据分析"></a>数据分析</h3><p>生成的统计数据查看<a href="/uploads/factors_stat.csv">账务因子统计</a>。统计数据是统计过去一年涨幅前20%的股票各账务因子在所有股票中的排序数值。从中选取几个因子举例：</p>
+<table>
+<thead>
+<tr>
+<th>分位数</th>
+<th>market_cap_r</th>
+<th>pe_ratio_r</th>
+<th>pb_ratio_r</th>
+<th>inventories_r</th>
+<th>fixed_assets_r</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0.25</td>
+<td>27</td>
+<td>15</td>
+<td>10</td>
+<td>39</td>
+<td>47</td>
+</tr>
+<tr>
+<td>0.5</td>
+<td>56</td>
+<td>40.5</td>
+<td>31</td>
+<td>66</td>
+<td>74</td>
+</tr>
+<tr>
+<td>0.75</td>
+<td>84.25</td>
+<td>79</td>
+<td>59</td>
+<td>86</td>
+<td>90</td>
+</tr>
+</tbody>
+</table>
+<p>如果股票涨幅与某个账务因子是没有关联性的，那么分位数与这个因子排序数值应该相差不会太大。例如0.25分位对应的排序值就应该是25，0.5分位对应的排序值就应该是50，0.75分位对应的排序值就应该是75。以选取出的几个因子为例，market_cap（流通股本）对与股票涨幅没有影响，PE（市盈率）和PB（市净率）越小股票涨幅越大，inventories（存货）和fixed_assets（固定资产）越大股票涨幅越大。PE和PB越小越好容易理解，但为什么存货越大越好？似乎不符合逻辑。我认为可能的原因是过去一年小市值股票遭到市场抛弃，市值越大，存货绝对值越大。但我们的策略中应该不能使用存货作为一个因子，因为不符合逻辑。我们开发出一个新的因子：存货/固定资产，如果检测这个因子与股票涨幅相关，可以将它做为交易系统的一个选股因子。</p>
+<p>我们只检测了一年的数据。市场在一段时间内可能会有不同的偏好，比如过去一年小市值股票表现不好，但过去三年小市值因子是有明显的作用的。可以修改以下两行代码，修改统计的日期，统计不同时间段的数据进行分析。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">last_two_year_dt = u.shift_trading_day(u.today_dt, <span class="number">-480</span>)    <span class="comment"># -480可以修改为-1000</span></div><div class="line">last_year_dt = u.shift_trading_day(u.today_dt, <span class="number">-240</span>)        <span class="comment"># -240可以修改为-720</span></div></pre></td></tr></table></figure>
+<p>根据<a href="https://item.jd.com/11397927.html" target="_blank" rel="external">投资策略实战分析</a>，以下因子可能是有显著效应的，可以重点关注。</p>
+<ul>
+<li>市值</li>
+<li>市盈率</li>
+<li>现金流</li>
+<li>EBIT对企业价值的比率</li>
+<li>价格对现金流的比率</li>
+<li>价格对销售额的比率</li>
+<li>价格对账面价值的比率</li>
+<li>股息率</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/07/mssys2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -430,7 +855,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">34</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -443,7 +868,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
